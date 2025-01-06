@@ -9,9 +9,9 @@ document.getElementById('birthdate-form').addEventListener('submit', function (e
     return;
   }
 
-  // Add 180 days to the birthdate
+  // Add 181 days to the birthdate
   const startSolidDate = new Date(birthdate);
-  startSolidDate.setDate(birthdate.getDate() + 180); // Add 180 days
+  startSolidDate.setDate(birthdate.getDate() + 181); // Add 181 days
   
   // Format the date to a readable format
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
