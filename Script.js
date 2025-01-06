@@ -1,54 +1,25 @@
-let currentLanguage = "en"; // Default language
+// Script.js
 
-async function loadTranslations() {
-  const response = await fetch("translations.json");
-  return response.json();
-}
-
-async function applyTranslations() {
-  const translations = await loadTranslations();
-  const texts = translations[currentLanguage];
-
-  document.querySelector("h1").textContent = texts.title;
-  document.querySelector("p").textContent = texts.description;
-  document.querySelector("label[for='dob']").textContent = texts.dob_label;
-  document.querySelector("button").textContent = texts.calculate_button;
-  document.getElementById("recommended-date-label").textContent = texts.recommended_date;
-}
-
-window.onload = async function () {
-  if (Notification.permission !== "granted") {
-    Notification.requestPermission();
-  }
-  await applyTranslations();
-};
-
-document.getElementById("language-selector").addEventListener("change", async function (event) {
-  currentLanguage = event.target.value;
-  await applyTranslations();
-});
-
-document.getElementById('dob-form').addEventListener('submit', function (event) {
-  event.preventDefault();
-  const dobInput = document.getElementById('dob').value;
-  if (!dobInput) {
-    alert("Please select a valid date of birth!");
-    return;
-  }
-  const dob = new Date(dobInput);
-  const solidStartDate = new Date(dob.setMonth(dob.getMonth() + 6));
-  scheduleReminder(solidStartDate);
-});
-
-function scheduleReminder(solidStartDate) {
-  const now = new Date();
-  const timeUntilNotification = solidStartDate - now;
-
-  if (timeUntilNotification > 0) {
-    setTimeout(() => {
-      new Notification("Time to Start Solids!", {
-        body: "Today is the recommended date to start solids for your child. Happy feeding!",
-      });
-    }, timeUntilNotification);
-  }
-}
+document.getElementById('birthdate-form').addEventListener('submit', function (e) {
+    e.preventDefault(); // Prevent form from submitting
+  
+    // Get the input date value
+    const birthdate = new Date(document.getElementById('birthdate').value);
+    
+    if (!birthdate.getTime()) {
+      alert("Please select a valid birthdate.");
+      return;
+    }
+  
+    // Calculate the start solid date (6 months after birth)
+    const startSolidDate = new Date(birthdate);
+    startSolidDate.setMonth(birthdate.getMonth() + 6); // Add 6 months
+    
+    // Format the date to a readable format (e.g., "January 6, 2025")
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const startDateFormatted = startSolidDate.toLocaleDateString('en-US', options);
+  
+    // Display the result
+    document.getElementById('result').innerHTML = `<p>Start solids on: <strong>${startDateFormatted}</strong></p>`;
+  });
+  
