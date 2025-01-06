@@ -1,4 +1,4 @@
-document.getElementById('dob-form').addEventListener('submit', function (event) {
+/document.getElementById('dob-form').addEventListener('submit', function (event) {
   event.preventDefault();
   const dobInput = document.getElementById('dob').value;
   if (!dobInput) {
