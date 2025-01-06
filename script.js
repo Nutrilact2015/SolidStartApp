@@ -1,25 +1,22 @@
-// Script.js
-
 document.getElementById('birthdate-form').addEventListener('submit', function (e) {
-    e.preventDefault(); // Prevent form from submitting
+  e.preventDefault(); // Prevent form from submitting
+
+  // Get the input date value
+  const birthdate = new Date(document.getElementById('birthdate').value);
   
-    // Get the input date value
-    const birthdate = new Date(document.getElementById('birthdate').value);
-    
-    if (!birthdate.getTime()) {
-      alert("Please select a valid birthdate.");
-      return;
-    }
+  if (!birthdate.getTime()) {
+    alert("Please select a valid birthdate.");
+    return;
+  }
+
+  // Add 180 days to the birthdate
+  const startSolidDate = new Date(birthdate);
+  startSolidDate.setDate(birthdate.getDate() + 180); // Add 180 days
   
-    // Calculate the start solid date (6 months after birth)
-    const startSolidDate = new Date(birthdate);
-    startSolidDate.setMonth(birthdate.getMonth() + 6); // Add 6 months
-    
-    // Format the date to a readable format (e.g., "January 6, 2025")
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const startDateFormatted = startSolidDate.toLocaleDateString('en-US', options);
-  
-    // Display the result
-    document.getElementById('result').innerHTML = `<p>Start solids on: <strong>${startDateFormatted}</strong></p>`;
-  });
-  
+  // Format the date to a readable format
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const startDateFormatted = startSolidDate.toLocaleDateString('en-US', options);
+
+  // Display the result
+  document.getElementById('result').innerHTML = `<p>Start solids on: <strong>${startDateFormatted}</strong></p>`;
+});
