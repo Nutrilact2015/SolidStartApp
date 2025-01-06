@@ -1,3 +1,5 @@
+// Script.js
+
 document.getElementById('birthdate-form').addEventListener('submit', function (e) {
   e.preventDefault(); // Prevent form from submitting
 
@@ -13,7 +15,7 @@ document.getElementById('birthdate-form').addEventListener('submit', function (e
   const startSolidDate = new Date(birthdate);
   startSolidDate.setDate(birthdate.getDate() + 181); // Add 181 days
   
-  // Format the date to a readable format
+  // Format the date to a readable format (e.g., "January 6, 2025")
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   const startDateFormatted = startSolidDate.toLocaleDateString('en-US', options);
 
