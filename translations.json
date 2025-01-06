@@ -1,0 +1,16 @@
+{
+  "en": {
+    "title": "Solid Start Date Calculator",
+    "description": "Enter your child's date of birth to calculate the recommended date to start solids (6 months later).",
+    "dob_label": "Child's Date of Birth:",
+    "calculate_button": "Calculate",
+    "recommended_date": "Recommended Date:"
+  },
+  "ms": {
+    "title": "Pengiraan Tarikh Mulakan Makanan Pejal",
+    "description": "Masukkan tarikh lahir anak anda untuk mengira tarikh yang disyorkan untuk memulakan makanan pejal (6 bulan kemudian).",
+    "dob_label": "Tarikh Lahir Anak:",
+    "calculate_button": "Kira",
+    "recommended_date": "Tarikh Disyorkan:"
+  }
+}
