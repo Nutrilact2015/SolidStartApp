@@ -1,24 +1,31 @@
-// Script.js
-
-document.getElementById('birthdate-form').addEventListener('submit', function (e) {
-  e.preventDefault(); // Prevent form from submitting
-
-  // Get the input date value
-  const birthdate = new Date(document.getElementById('birthdate').value);
-  
-  if (!birthdate.getTime()) {
-    alert("Please select a valid birthdate.");
+document.getElementById('dob-form').addEventListener('submit', function (event) {
+  event.preventDefault();
+  const dobInput = document.getElementById('dob').value;
+  if (!dobInput) {
+    alert("Please select a valid date of birth!");
     return;
   }
+  const dob = new Date(dobInput);
 
-  // Add 181 days to the birthdate
-  const startSolidDate = new Date(birthdate);
-  startSolidDate.setDate(birthdate.getDate() + 181); // Add 181 days
+  // Add 181 days to the DOB
+  dob.setDate(dob.getDate() + 181); 
+
+  // Display the recommended solid start date
+  document.getElementById("recommended-date-label").textContent = `Recommended date to start solids: ${dob.toDateString()}`;
   
-  // Format the date to a readable format (e.g., "January 6, 2025")
-  const options = { year: 'numeric', month: 'long', day: 'numeric' };
-  const startDateFormatted = startSolidDate.toLocaleDateString('en-US', options);
-
-  // Display the result
-  document.getElementById('result').innerHTML = `<p>Start solids on: <strong>${startDateFormatted}</strong></p>`;
+  // Schedule a reminder
+  scheduleReminder(dob);
 });
+
+function scheduleReminder(solidStartDate) {
+  const now = new Date();
+  const timeUntilNotification = solidStartDate - now;
+
+  if (timeUntilNotification > 0) {
+    setTimeout(() => {
+      new Notification("Time to Start Solids!", {
+        body: "Today is the recommended date to start solids for your child. Happy feeding!",
+      });
+    }, timeUntilNotification);
+  }
+}
