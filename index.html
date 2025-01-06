@@ -3,28 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Solid Start Calculator</title>
+  <title>Solid Start App</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <h1>Solid Start Date Calculator</h1>
-    <p>Enter your child's date of birth to calculate the recommended date to start solids (6 months later).</p>
-    <form id="dob-form">
-      <label for="dob">Child's Date of Birth:</label>
-      <input type="date" id="dob" required>
-      <button type="submit">Calculate</button>
+    <h1>Solid Start Calculator</h1>
+    <p>Enter your child's birth date to calculate the date to start solids (around 6 months):</p>
+
+    <form id="birthdate-form">
+      <label for="birthdate">Child's Birthdate:</label>
+      <input type="date" id="birthdate" required>
+      <button type="submit">Calculate Start Date</button>
     </form>
-    <div id="result" class="hidden">
-      <h2 id="recommended-date-label">Recommended Date:</h2>
-      <p id="solid-date"></p>
-      <p id="countdown"></p>
-    </div>
-    <select id="language-selector">
-      <option value="en">English</option>
-      <option value="ms">Bahasa Melayu</option>
-    </select>
+
+    <div id="result" class="result"></div>
   </div>
-  <script src="script.js"></script>
+
+  <script src="Script.js"></script>
 </body>
 </html>
